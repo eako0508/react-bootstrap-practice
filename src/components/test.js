@@ -2,8 +2,8 @@ import React from 'react';
 import * as BS from 'react-bootstrap';
 
 //import {CusForm} from './components/cusForm';
-//import CusForm from './cusForm';
-import CusForm from './cusForm2';
+import CusForm from './cusForm';
+//import CusForm from './cusForm2';
 
 export default class Test extends React.Component {
 	constructor(props){

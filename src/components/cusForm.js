@@ -2,37 +2,33 @@ import React from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {Button, FormGroup, FormControl, InputGroup, Form} from 'react-bootstrap';
 
-export function CusForm(props){
-	//onChange={e=>input.value=e.target.value}
 /*
-			value={input.value}
-			onChange={(e)=>{
-				console.log("e.target.value");
-				console.log(e.target.value);
-				console.log("input.value");
-				console.log(input.value);
-				input.value += e.target.value				
-			}}
+				onChange={(e)=>{
 
+					input.onChange
+					
+					props.handleChange(e)
+					console.log(e.target.value);
+					input.value += e.target.value;
+					console.log(input.value);
+					
+				}}
 */
 
-	const nameInput = ({input, type, placeholder, name})=>(
 
-		<FormControl 
-			name={name} 
-			type={type} 
-			placeholder={placeholder}
-			value={input.value}
-			onChange={(e)=>{
-				console.log("e.target.value");
-				console.log(e.target.value);
-				console.log("input.value");
-				console.log(input.value);
-				input.value += e.target.value				
-			}}
-		
-		/>
-	);
+export function CusForm(props){
+	console.log(props);
+	const nameInput = function({input, type, placeholder, name}){
+		return (
+			<FormControl 
+				name={name} 
+				type={type} 
+				placeholder={placeholder}
+				value={input.value}
+				onChange={input.onChange}
+			/>
+		);
+	}
 	
 	return (
 		<Form onSubmit={
