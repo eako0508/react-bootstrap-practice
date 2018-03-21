@@ -1,7 +1,9 @@
 import React from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {Button, FormGroup, FormControl, InputGroup, Form} from 'react-bootstrap';
-//disabled={this.props.pristine || this.props.submitting}
+import {connect} from 'react-redux';
+import {submitForm} from '../actions/action';
+
 export class CusForm extends React.Component{
 	constructor(props){
 		super(props);
@@ -10,14 +12,8 @@ export class CusForm extends React.Component{
 		}
 	}
 
-	handleChange(e){
-		this.setState({
-			text: e.target.value
-		})
-	}
 	onSubmit(e){
-		//e.preventDefault();
-		console.log(e);
+		this.props.dispatch(submitForm(e));
 	}
 	nameInput({input, type, placeholder, name}){
 		return (
@@ -34,7 +30,9 @@ export class CusForm extends React.Component{
 	render(){
 		
 		return (
-			<Form onSubmit={this.props.handleSubmit(e=>this.onSubmit(e))} >
+			<Form onSubmit={this.props.handleSubmit(e=>
+				this.onSubmit(e)
+			)}>
 				<FormGroup>				
 					<InputGroup>
 						<Field 
@@ -45,6 +43,7 @@ export class CusForm extends React.Component{
 						/>
 						<InputGroup.Button>
 							<Button bsStyle='primary' type='submit'
+							disabled={this.props.pristine || this.props.submitting}
 							>
 								Submit
 							</Button>
@@ -60,3 +59,9 @@ export default reduxForm({
 	form: 'CusForm'
 	
 })(CusForm);
+
+const mapStateToProps = state => ({
+	name: state.name
+});
+
+connect(mapStateToProps)(CusForm);
